@@ -26,7 +26,7 @@ int main(){
             continue;
         }
         
-        else if((f.top()=='{' && s[i]!='}') || (f.top()=='(' && s[i]!=')') || (f.top()=='[' && s[i]!=']')){
+        else if(!f.empty() && ((f.top()=='{' && s[i]!='}') || (f.top()=='(' && s[i]!=')') || (f.top()=='[' && s[i]!=']'))){
             break;
         }
         
