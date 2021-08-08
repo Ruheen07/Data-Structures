@@ -1,0 +1,59 @@
+#include <iostream>
+#include<algorithm>
+#include<vector>
+#include <bits/stdc++.h>
+using namespace std;
+
+ 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+ 
+    int n,m;
+    cin>>n>>m;
+    int a,b;
+    int nobles[n]={1};
+    vector< pair <int,int> > friend;
+    for(int i=0; i<m; i++){
+        cin>>a>>b;
+        friend.push_back(make_pair(a,b));
+    }
+    int answer = 0;
+    int qno;
+    cin>>qno;
+    int q[3];
+    while(qno=!0){
+        cin>>q[0];
+        if(q[0]==3){
+            for(int i=0; i<m; i++){
+                if(friend[i].first<friend[i].second && nobles[friend[i].first-1]==1){
+                    nobles[friend[i].first-1]=0;
+                }
+                if(friend[i].first>friend[i].second && nobles[friend[i].second-1]==1){
+                    nobles[friend[i].second-1]=0;
+                }
+            }
+            for (int i=0; i<n; i++){
+                if(nobles[i]==1){
+                    answer++;
+                }
+            }
+            
+        }
+        if(q[0]==1){
+            cin>>q[1]>>q[2];
+            friend.push_back(make_pair(q[1],q[2]));
+        }
+        if(q[0]==2){
+            cin>>q[1]>>q[2];
+            for(int i=0; i<m; i++){
+                if((friend[i].first==q[1] && friend[i].second==q[2]) || (friend[i].first==q[2] && friend[i].second==q[1])){
+                    friend.erase(friend.begin()+i);
+                }
+            }
+        }
+        
+        qno--;
+        cout<<answer<<endl;
+    }
+}
